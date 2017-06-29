@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/text_border"
+    android:gravity="top"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/text_border"
+        android:paddingBottom="15dp"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        android:text="问诊时间：2017-06-25"
+        android:textAlignment="textStart"
+        android:textColor="#dd000000"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView_quest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/text_border"
+        android:paddingBottom="15dp"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        android:text="主诉病情：药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸"
+        android:textAlignment="textStart"
+        android:textColor="#dd000000"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView_solvation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/text_border"
+        android:paddingBottom="15dp"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        android:text="诊断结果：药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸"
+        android:textAlignment="textStart"
+        android:textColor="#dd000000"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView_medicine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/text_border"
+        android:paddingBottom="15dp"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        android:text="用药意见：药丸药丸药丸药丸药丸药丸药丸药丸药丸药丸"
+        android:textAlignment="textStart"
+        android:textColor="#dd000000"
+        android:textSize="18sp" />
+</LinearLayout>

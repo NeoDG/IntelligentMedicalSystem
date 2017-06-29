@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+ <android.support.v7.widget.Toolbar
+     android:id="@+id/tool_bar"
+     android:layout_width="match_parent"
+     android:layout_height="?attr/actionBarSize"
+     android:background="@color/colorPrimary1"
+     android:navigationIcon="@mipmap/navigation_back_white"
+     app:titleTextColor="@color/white"
+     app:title=""
+     app:navigationIcon="@mipmap/navigation_back_white"
+     >
+
+ </android.support.v7.widget.Toolbar>
+
+ <android.support.design.widget.TabLayout
+     android:id="@+id/tabLayout"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:background="@color/colorPrimary1"
+     app:tabTextColor="@color/white"
+     app:tabSelectedTextColor="@color/white"
+     app:tabIndicatorColor="@android:color/holo_green_light"
+     app:tabIndicatorHeight="2dp"
+     app:tabGravity="fill"
+     app:tabMode="scrollable"
+     >
+
+ </android.support.design.widget.TabLayout>
+
+ <android.support.v4.view.ViewPager
+     android:id="@+id/view_pager"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+
+ </android.support.v4.view.ViewPager>
+</LinearLayout>
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<android.support.design.widget.CoordinatorLayout-->
+<!--android:id="@+id/main_content"-->
+<!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent">-->
+
+<!--<android.support.design.widget.AppBarLayout-->
+    <!--android:id="@+id/appbar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">-->
+
+ <!--<LinearLayout-->
+     <!--android:id="@+id/toolbar"-->
+     <!--android:layout_width="match_parent"-->
+     <!--android:layout_height="100dp"-->
+     <!--android:background="@color/colorPrimary1"-->
+     <!--app:layout_scrollFlags="scroll|enterAlways"-->
+     <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
+     <!--android:gravity="center_vertical"-->
+     <!--android:orientation="vertical">-->
+  <!--<TextView-->
+      <!--android:id="@+id/introduction"-->
+      <!--android:layout_width="wrap_content"-->
+      <!--android:layout_height="wrap_content"-->
+      <!--android:text="the best app"/>-->
+ <!--</LinearLayout>-->
+
+ <!--<android.support.v7.widget.Toolbar-->
+     <!--android:id="@+id/tool_bar"-->
+     <!--android:layout_width="match_parent"-->
+     <!--android:layout_height="?attr/actionBarSize"-->
+     <!--android:background="@color/colorPrimary1"-->
+     <!--app:titleTextColor="@color/white"-->
+     <!--app:title="TabLayout示例"-->
+
+     <!--&gt;-->
+
+ <!--</android.support.v7.widget.Toolbar>-->
+
+ <!--<android.support.design.widget.TabLayout-->
+     <!--android:id="@+id/tabLayout"-->
+     <!--android:layout_width="match_parent"-->
+     <!--android:layout_height="wrap_content"-->
+     <!--android:background="@color/colorPrimary1"-->
+     <!--app:tabTextColor="@color/white"-->
+     <!--app:tabSelectedTextColor="@color/white"-->
+     <!--app:tabIndicatorColor="@android:color/holo_green_light"-->
+     <!--app:tabIndicatorHeight="2dp"-->
+     <!--app:tabGravity="fill"-->
+     <!--app:tabMode="scrollable"-->
+     <!--&gt;-->
+
+ <!--</android.support.design.widget.TabLayout>-->
+
+<!--</android.support.design.widget.AppBarLayout>-->
+
+<!--<android.support.v4.view.ViewPager-->
+    <!--android:id="@+id/view_pager"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+
+<!--</android.support.v4.view.ViewPager>-->
+
+<!--</android.support.design.widget.CoordinatorLayout>-->

@@ -1,0 +1,43 @@
+<!--  <?xml version="1.0" encoding="utf-8"?>
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/allFlipper"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    
+    <RelativeLayout
+        android:id="@+id/splashLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/firstbg" >
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/homeLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/bg" >
+
+        <Button
+            android:id="@+id/enter_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/buttonbg"
+            android:text="进入系统" 
+            android:textColor="#FFFFFF"/>
+        
+
+    </RelativeLayout>
+
+</ViewFlipper>-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    
+    android:background="@drawable/firstbg"
+    android:theme="@android:style/Theme.NoTitleBar" >
+    
+</LinearLayout>
