@@ -13,6 +13,10 @@ public class Msg {
 	
 	public static final int TYPE_PIC=-1;
 
+	public static final int TYPE_MEDICINE=2;
+
+	public static final int TYPE_ELSE=3;
+
 	private String content;
 
 	private int type;

@@ -76,7 +76,7 @@ public class MsgAdapter extends BaseAdapter {
 				viewHolder.rightMsg = (TextView) view.findViewById(R.id.right_msg);
 				view.setTag(viewHolder);
 
-			if (msg.getType() == Msg.TYPE_RECEIVED) {
+			if (msg.getType() == Msg.TYPE_RECEIVED||msg.getType()==Msg.TYPE_ELSE||msg.getType()==Msg.TYPE_MEDICINE) {
 				viewHolder.leftLayout.setVisibility(View.VISIBLE);
 				viewHolder.rightLayout.setVisibility(View.GONE);
 				viewHolder.leftMsg.setText(msg.getContent());

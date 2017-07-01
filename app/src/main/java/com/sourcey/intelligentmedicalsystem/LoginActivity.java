@@ -1,7 +1,9 @@
 package com.sourcey.intelligentmedicalsystem;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -14,12 +16,19 @@ import android.widget.Toast;
 
 import com.sourcey.intelligentmedicalsystem.bean.User;
 import com.sourcey.intelligentmedicalsystem.db.UserDBDao;
+import com.sourcey.intelligentmedicalsystem.httpUtils.GetThread;
+import com.sourcey.intelligentmedicalsystem.httpUtils.HttpCallbackListener;
 import com.sourcey.intelligentmedicalsystem.utils.MyApplication;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.Bind;
+
+import static com.sourcey.intelligentmedicalsystem.R.drawable.user;
 
 /**
  * 登陆实体类
@@ -34,10 +43,18 @@ public class LoginActivity extends AppCompatActivity {
     @Bind(R.id.input_password) EditText _passwordText;
     @Bind(R.id.btn_login) Button _loginButton;
     @Bind(R.id.link_signup) TextView _signupLink;
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        SharedPreferences sp = getSharedPreferences("loginToken", 0);
+        String token = sp.getString("token", null);
+        String username = sp.getString("username", null);
+        Log.e("sp",username+"2333"+token);
+        if(token!=null&&username!=null) {
+           onLoginSuccess();
+        }
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         
@@ -70,7 +87,42 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        _loginButton.setEnabled(false);
+        final String username = _usernameText.getText().toString();
+        String password = _passwordText.getText().toString();
+
+        Log.e("up",username+password);
+        GetThread getThread=new GetThread(username, password, new HttpCallbackListener() {
+            @Override
+            public void onFinish(String response) throws JSONException {
+                Looper.prepare();
+                Log.e("finish","11");
+                JSONObject json=new JSONObject(response);
+                if(json.getString("status").equals("success")){
+                    SharedPreferences sp = getSharedPreferences("loginToken", 0);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString("token",json.getString("token"));
+                    Log.e("token",json.getString("token"));
+                    editor.putString("username",username);
+                    editor.commit();
+                    onLoginSuccess();
+                }else if(json.getString("status").equals("failed")){
+                    onLoginFailed();
+                }
+                Looper.loop();
+
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Looper.prepare();
+                Log.e("erro","22");
+                onLoginFailed();
+                Looper.loop();
+
+            }
+        });
+        getThread.start();
+        /*_loginButton.setEnabled(false);
 
         final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
                 R.style.AppTheme_Dark_Dialog);
@@ -108,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
                        // onLoginFailed();
                        progressDialog.dismiss();
                    }
-               }, 3000);
+               }, 3000);*/
 
 
 
@@ -134,11 +186,11 @@ public class LoginActivity extends AppCompatActivity {
         moveTaskToBack(true);
     }
 
-    public void onLoginSuccess(int id) {
+    public void onLoginSuccess() {
         MyApplication.setLoginFlag(true);
-        MyApplication.setUserId(id);
-        _loginButton.setEnabled(true);
-        Toast.makeText(getBaseContext(), "Login succeed", Toast.LENGTH_LONG).show();
+      //  MyApplication.setUserId(id);
+       // _loginButton.setEnabled(true);
+        Toast.makeText(getBaseContext(), "登录成功", Toast.LENGTH_LONG).show();
         Intent intent=new Intent(LoginActivity.this,RecordActivity.class);
         startActivity(intent);
 
@@ -146,9 +198,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "登录失败", Toast.LENGTH_LONG).show();
 
-        _loginButton.setEnabled(true);
+       // _loginButton.setEnabled(true);
     }
 
     public boolean validate() {

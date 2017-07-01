@@ -50,6 +50,9 @@ import com.sourcey.intelligentmedicalsystem.httpUtils.HttpCallbackListener;
 import com.sourcey.intelligentmedicalsystem.httpUtils.PostThread;
 import com.sourcey.intelligentmedicalsystem.utils.MyApplication;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -93,7 +96,12 @@ public class AIActivity extends Activity implements View.OnClickListener{
 	private List<ListViewItemData> data = new ArrayList<>();
 	
 	public static final int SHOW_RESPONSE = 0; 
-	
+
+	public static final int SHOW_RESPONSE_MEDINCINE=2;
+
+	public static final int SHOW_RESPONSE_ELSE=3;
+
+
 	private PopupMenu popupMenu;
 
 	private List<String> popupMenuItemList = new ArrayList<>();
@@ -107,15 +115,42 @@ public class AIActivity extends Activity implements View.OnClickListener{
 	private Handler handler=new Handler(){
 		public void handleMessage(Message msg){
 			switch (msg.what){
-			case SHOW_RESPONSE:
-				String response=(String)msg.obj;
-				
-			
-				adapter.notifyDataSetChanged();
-				msgListView.setSelection(data.size());
-				inputText.setText("");
-				Msg msg1=new Msg(response,Msg.TYPE_RECEIVED);
-				data.add(new ListViewItemData<>(msg1,0));
+				case SHOW_RESPONSE:
+					String response=(String)msg.obj;
+
+
+					adapter.notifyDataSetChanged();
+					msgListView.setSelection(data.size());
+					inputText.setText("");
+					Msg msg1=new Msg(response,Msg.TYPE_RECEIVED);
+					data.add(new ListViewItemData<>(msg1,0));
+					break;
+				case SHOW_RESPONSE_MEDINCINE:
+					response=(String)msg.obj;
+
+
+					adapter.notifyDataSetChanged();
+					msgListView.setSelection(data.size());
+					inputText.setText("");
+					msg1=new Msg(response,Msg.TYPE_MEDICINE);
+					data.add(new ListViewItemData<>(msg1,0));
+					break;
+				case SHOW_RESPONSE_ELSE:
+					response=(String)msg.obj;
+
+
+					adapter.notifyDataSetChanged();
+					msgListView.setSelection(data.size());
+					inputText.setText("");
+					msg1=new Msg(response,Msg.TYPE_ELSE);
+					data.add(new ListViewItemData<>(msg1,0));
+					break;
+				default:
+					break;
+
+
+
+
 			}
 			
 		}
@@ -125,6 +160,7 @@ public class AIActivity extends Activity implements View.OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//requestWindowFeature(Window.FEATURE_NO_TITLE);
+
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView(R.layout.activity_ai);
 
@@ -323,12 +359,27 @@ public class AIActivity extends Activity implements View.OnClickListener{
 					inputText.setText("");
 					GetThread getThread=new GetThread(content,new HttpCallbackListener(){
 							@Override
-							public void onFinish(String response) {
+							public void onFinish(String response) throws JSONException {
 								// TODO Auto-generated method stub
-								Message message =new Message();
-								message.what=SHOW_RESPONSE;
-								message.obj=response;
-								handler.sendMessage(message);
+								JSONObject json=new JSONObject(response);
+								if(json!=null){
+									Message message =new Message();
+									message.what=SHOW_RESPONSE;
+									message.obj=json.getString("answer");
+									switch (json.getString("type")){
+										case "":
+											message.what=SHOW_RESPONSE_ELSE;
+											break;
+										case "相关药物":
+											message.what=SHOW_RESPONSE_MEDINCINE;
+											break;
+										default:
+											message.what=SHOW_RESPONSE;
+											break;
+									}
+									handler.sendMessage(message);
+								}
+
 							}
 
 							@Override
@@ -336,7 +387,7 @@ public class AIActivity extends Activity implements View.OnClickListener{
 								// TODO Auto-generated method stub
 								e.printStackTrace();
 								Message message =new Message();
-								message.what=SHOW_RESPONSE;
+								message.what=SHOW_RESPONSE_ELSE;
 								message.obj="发送失败！";
 								handler.sendMessage(message);
 							}
@@ -405,7 +456,7 @@ public class AIActivity extends Activity implements View.OnClickListener{
              	public void onFinish(String response){
              		String s="";
              		Message message =new Message();
-					message.what=SHOW_RESPONSE;
+					message.what=SHOW_RESPONSE_ELSE;
 					if(response.equals("0")){
 						s="您的舌苔状态正常哦~";
 					}else if(response.equals("1")){
@@ -422,7 +473,7 @@ public class AIActivity extends Activity implements View.OnClickListener{
              		e.printStackTrace();
              		Log.d("b",""+e.getStackTrace());
 						Message message =new Message();
-						message.what=SHOW_RESPONSE;
+						message.what=SHOW_RESPONSE_ELSE;
 						message.obj="失败！";
 						handler.sendMessage(message);
              	}
@@ -564,7 +615,10 @@ public class AIActivity extends Activity implements View.OnClickListener{
 		switch(v.getId()){
 			case R.id.btn_add:
 				//如果用户已经登陆，则修改record数据库;否则跳到登陆界面
-				if(MyApplication.getLoginFlag()){
+				String username=getSharedPreferences("loginToken",0).getString("username",null);
+				String token=getSharedPreferences("loginToken",0).getString("token",null);
+
+				if(token!=null&&username!=null){
 					int userId=MyApplication.getUserId();
 					ListViewItemData  itemData=data.get(popupPosition-1);
 					if(itemData.getDataType()==0){
@@ -595,6 +649,25 @@ public class AIActivity extends Activity implements View.OnClickListener{
 								}
 								popupWindow.dismiss();
 
+								break;
+							case Msg.TYPE_MEDICINE:
+								if(records==null||records.size()<AIActivity.index){
+									Record record=new Record();
+									record.setUserid(userId);
+									record.setMedicine(content);
+									Date now = new Date();
+									long time=now.getTime();
+									record.setTime(time);
+									rdb.add(record);
+								}else{
+									Record record=records.get(0);
+									record.setMedicine(record.getMedicine()+"\n"+content);
+									Date now = new Date();
+									long time=now.getTime();
+									record.setTime(time);
+									rdb.update(record.getId(),record);
+								}
+								popupWindow.dismiss();
 								break;
 							case Msg.TYPE_SENT:
 //								Log.d("xinxi",content);

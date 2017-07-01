@@ -3,6 +3,7 @@ package com.sourcey.intelligentmedicalsystem;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,10 @@ import android.widget.Toast;
 
 import com.sourcey.intelligentmedicalsystem.bean.User;
 import com.sourcey.intelligentmedicalsystem.db.UserDBDao;
+import com.sourcey.intelligentmedicalsystem.httpUtils.HttpCallbackListener;
+import com.sourcey.intelligentmedicalsystem.httpUtils.PostThread;
+
+import org.json.JSONException;
 
 import butterknife.ButterKnife;
 import butterknife.Bind;
@@ -25,8 +30,8 @@ public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
     private UserDBDao userDBDao;
 
-    @Bind(R.id.input_username) EditText _usernameText;
-    @Bind(R.id.input_email) EditText _emailText;
+    //@Bind(R.id.input_username) EditText _usernameText;
+   // @Bind(R.id.input_email) EditText _emailText;
     @Bind(R.id.input_phone) EditText _phoneText;
     @Bind(R.id.input_password) EditText _passwordText;
     @Bind(R.id.input_reEnterPassword) EditText _reEnterPasswordText;
@@ -62,13 +67,53 @@ public class SignupActivity extends AppCompatActivity {
         Log.d(TAG, "Signup");
 
         if (!validate()) {
-            onSignupFailed("Login failed");
+            onSignupFailed("信息错误！");
             return;
         }
 
-        _signupButton.setEnabled(false);
+        //_signupButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this,
+        //String username = _usernameText.getText().toString();
+        //String email = _emailText.getText().toString();
+        String username = _phoneText.getText().toString();
+        String password = _passwordText.getText().toString();
+        String reEnterPassword = _reEnterPasswordText.getText().toString();
+
+        Log.e("a","a");
+        PostThread postThread=new PostThread(username, password, new HttpCallbackListener() {
+
+            @Override
+            public void onFinish(String response) throws JSONException{
+                Looper.prepare();
+               if(response.equals("success")){
+                    Log.e("result","success");
+                  // Toast.makeText(getBaseContext(), "注册成功！", Toast.LENGTH_LONG).show();
+
+                  // Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                  // startActivity(intent);
+                  // finish();
+                   //overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                   onSignupSuccess();
+                }else if(response.equals("401")){
+                    Log.e("result","failed");
+                  // Toast.makeText(getBaseContext(), "用户已存在！", Toast.LENGTH_LONG).show();
+                   onSignupFailed("用户已存在！");
+                   //onSignupFailed("用户已存在");
+                }
+                Looper.loop();
+            }
+
+            @Override
+            public void onError(Exception e) {
+                e.printStackTrace();
+                Log.e("!!!!!","!!!!!");
+                onSignupFailed("注册失败！");
+
+            }
+        },2);
+        postThread.start();
+
+       /* final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this,
                 R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Creating Account...");
@@ -77,6 +122,8 @@ public class SignupActivity extends AppCompatActivity {
 
 
         // TODO: Implement your own signup logic here.
+
+
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
@@ -103,7 +150,7 @@ public class SignupActivity extends AppCompatActivity {
                         }
                         progressDialog.dismiss();
                     }
-                }, 3000);
+                }, 3000);*/
 
 
 
@@ -111,8 +158,8 @@ public class SignupActivity extends AppCompatActivity {
 
 
     public void onSignupSuccess() {
-        Toast.makeText(getBaseContext(), "Login succeed", Toast.LENGTH_LONG).show();
-        _signupButton.setEnabled(true);
+        Toast.makeText(getBaseContext(), "注册成功", Toast.LENGTH_LONG).show();
+        //_signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
         finish();
     }
@@ -120,37 +167,37 @@ public class SignupActivity extends AppCompatActivity {
     public void onSignupFailed(String message) {
         Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
 
-        _signupButton.setEnabled(true);
+        //_signupButton.setEnabled(true);
     }
 
 
     public boolean validate() {
         boolean valid = true;
 
-        String username = _usernameText.getText().toString();
-        String email = _emailText.getText().toString();
+       // String username = _usernameText.getText().toString();
+       // String email = _emailText.getText().toString();
         String mobile = _phoneText.getText().toString();
         String password = _passwordText.getText().toString();
         String reEnterPassword = _reEnterPasswordText.getText().toString();
-
-        if (username.isEmpty() || username.length() < 3) {
-            _usernameText.setError("at least 3 characters");
-            valid = false;
-        } else if(userDBDao.findByitem(username)!=null){
-            _usernameText.setError("该用户名已存在");
-        }else{
-            _usernameText.setError(null);
-        }
-
-
+//
+        //if (username.isEmpty() || username.length() < 3) {
+          //  _usernameText.setError("at least 3 characters");
+            //valid = false;
+       // } else if(userDBDao.findByitem(username)!=null){
+         //   _usernameText.setError("该用户名已存在");
+        //}else{
+          //  _usernameText.setError(null);
+        //}
 
 
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("enter a valid email address");
-            valid = false;
-        } else {
-            _emailText.setError(null);
-        }
+
+
+       // if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+         //   _emailText.setError("enter a valid email address");
+           // valid = false;
+        //} else {
+          //  _emailText.setError(null);
+       // }
 
         if (mobile.isEmpty() || mobile.length()!=11) {
             _phoneText.setError("Enter Valid Mobile Number");

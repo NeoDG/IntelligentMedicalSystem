@@ -26,13 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:hint="Userame" />
-        </android.support.design.widget.TextInputLayout>
+            android:layout_marginBottom="8dp"></android.support.design.widget.TextInputLayout>
 
         <!--&lt;!&ndash; Address Label &ndash;&gt;-->
         <!--<android.support.design.widget.TextInputLayout-->
@@ -54,13 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:hint="Email" />
-        </android.support.design.widget.TextInputLayout>
+            android:layout_marginBottom="8dp"></android.support.design.widget.TextInputLayout>
 
 
         <!-- mobile number -->
