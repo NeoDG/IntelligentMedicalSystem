@@ -161,12 +161,7 @@ public class LoginActivity extends AppCompatActivity {
                        progressDialog.dismiss();
                    }
                }, 3000);*/
-
-
-
-
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -183,7 +178,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         // Disable going back to the MainActivity
-        moveTaskToBack(true);
+//        moveTaskToBack(true);
+        super.onBackPressed();
     }
 
     public void onLoginSuccess() {

@@ -14,13 +14,13 @@ public class Record {
 
     private int userid;
 
-    private long time;
+    private String time = "";
 
-    private String quest;
+    private String quest = "";
 
-    private String solution;
+    private String solution = "";
 
-    private String medicine;
+    private String medicine = "";
 
     public Record(String quest, String solution, String medicine) {
         this.quest = quest;
@@ -47,11 +47,11 @@ public class Record {
         this.id = id;
     }
 
-    public long getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(long time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

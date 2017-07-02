@@ -39,7 +39,7 @@ public class RecordDBDao {
             String quest=record.getQuest();
             String solution=record.getSolution();
             String medicine=record.getMedicine();
-            long time=record.getTime();
+            String time=record.getTime();
 
             values.put("userid",userid);
             values.put("quest", quest);
@@ -77,7 +77,7 @@ public class RecordDBDao {
             String quest=newRecord.getQuest();
             String solution=newRecord.getSolution();
             String medicine=newRecord.getMedicine();
-            long time=newRecord.getTime();
+            String time=newRecord.getTime();
 
             values.put("userid",userid);
             values.put("quest", quest);
@@ -104,7 +104,7 @@ public class RecordDBDao {
                     Record record= new Record();
                     int id=cursor.getInt(cursor.getColumnIndex("id"));
                     int userid = cursor.getInt(cursor.getColumnIndex("userid"));
-                    int time=cursor.getInt(cursor.getColumnIndex("time"));
+                    String time=cursor.getString(cursor.getColumnIndex("time"));
                     String quest = cursor.getString(cursor.getColumnIndex("quest"));
                     String solution = cursor.getString(cursor.getColumnIndex("solution"));
                     String medicine = cursor.getString(cursor.getColumnIndex("medicine"));
@@ -149,13 +149,10 @@ public class RecordDBDao {
                     Record record=new Record();
                     int id=cursor.getInt(cursor.getColumnIndex("id"));
                     int userid=cursor.getInt((cursor.getColumnIndex("userid")));
-                    int time=cursor.getInt(cursor.getColumnIndex("time"));
+                    String time=cursor.getString(cursor.getColumnIndex("time"));
                     String quest = cursor.getString(cursor.getColumnIndex("quest"));
                     String solution = cursor.getString(cursor.getColumnIndex("solution"));
                     String medicine = cursor.getString(cursor.getColumnIndex("medicine"));
-
-
-
 
                     record.setId(id);
                     record.setUserid(userid);

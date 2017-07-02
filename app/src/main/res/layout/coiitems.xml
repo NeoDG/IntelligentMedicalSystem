@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/textView_time"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@drawable/text_border"
         android:paddingBottom="15dp"
@@ -26,7 +26,7 @@
     <TextView
         android:id="@+id/textView_quest"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@drawable/text_border"
         android:paddingBottom="15dp"
@@ -41,7 +41,7 @@
     <TextView
         android:id="@+id/textView_solvation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@drawable/text_border"
         android:paddingBottom="15dp"
@@ -56,7 +56,7 @@
     <TextView
         android:id="@+id/textView_medicine"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@drawable/text_border"
         android:paddingBottom="15dp"

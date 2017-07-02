@@ -14,6 +14,7 @@
             android:id="@+id/filter_edit"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dip"
@@ -22,12 +23,20 @@
             android:gravity="center"
             android:hint="@string/search"
             android:singleLine="true"
-            android:textSize="15.0dip"
-            android:layout_marginBottom="5dp" />
+            android:textColor="@color/colorBack"
+            android:textSize="15.0dip" />
 
         <FrameLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" >
+
+            <ListView
+                android:id="@+id/sortlist"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:background="@color/whites"
+                android:listSelector="@drawable/comm_btn_selector" />
 
             <TextView
                 android:id="@+id/dialog"
@@ -42,17 +51,10 @@
 
             <com.sourcey.intelligentmedicalsystem.utils.SideBar
                 android:id="@+id/sidrbar"
-                android:layout_width="30.0dip"
-                android:layout_height="fill_parent"
-                android:layout_gravity="right|center" />
+                android:layout_width="33dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end|center" />
 
-            <ListView
-                android:id="@+id/sortlist"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center"
-                android:background="@color/whites"
-                android:listSelector="@drawable/comm_btn_selector" />
         </FrameLayout>
     </LinearLayout>
 

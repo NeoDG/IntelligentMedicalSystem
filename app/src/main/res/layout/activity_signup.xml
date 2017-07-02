@@ -15,11 +15,18 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
-        <ImageView android:src="@drawable/logo"
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="72dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp"
-            android:layout_gravity="center_horizontal" />
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="Intelligent Medical \nSystem"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="30sp"
+            android:textStyle="italic" />
 
         <!-- Name Label -->
         <android.support.design.widget.TextInputLayout
@@ -57,11 +64,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_phone"
+
+            <EditText
+                android:id="@+id/input_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:hint="Mobile Number" />
+                android:hint="手机号"
+                android:inputType="number" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->
@@ -70,11 +79,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_password"
+
+            <EditText
+                android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="Password"/>
+                android:hint="密码"
+                android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Password Re-enter Label -->
@@ -83,11 +94,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_reEnterPassword"
+
+            <EditText
+                android:id="@+id/input_reEnterPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="Re-enter Password"/>
+                android:hint="重复密码"
+                android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Signup Button -->
@@ -95,10 +108,10 @@
             android:id="@+id/btn_signup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
             android:padding="12dp"
-            android:text="Create Account"/>
+            android:text="注册账号" />
 
         <TextView android:id="@+id/link_login"
             android:layout_width="fill_parent"

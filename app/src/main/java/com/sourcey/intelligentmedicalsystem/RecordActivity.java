@@ -15,6 +15,7 @@ import com.sourcey.intelligentmedicalsystem.utils.MyApplication;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * 病例activity
@@ -36,7 +37,7 @@ public class RecordActivity extends AppCompatActivity {
     void initdata() {
         RecordDBDao db=new RecordDBDao(getApplicationContext());
         List<Record> records=db.findByitem(MyApplication.getUserId());
-        SimpleDateFormat sdf= new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        SimpleDateFormat sdf= new SimpleDateFormat("yyyy年MM月dd日 HH:mm", Locale.CHINA);
 
         int rnum=0;
         if(records!=null){
@@ -46,8 +47,8 @@ public class RecordActivity extends AppCompatActivity {
         data = new String[rnum][4];
         for(int i = 0; i< rnum; i++) {
             Record record=records.get(i);
-            long time=record.getTime();
-            data[i][0] = "问诊时间："+sdf.format(new Date(time))+"----No." + (i+1);
+            String time=record.getTime();
+            data[i][0] = "问诊时间："+ time;//sdf.format(new Date(time));//+"----No." + (i+1);
             data[i][1] = "主诉病情："+record.getQuest();
             data[i][2] = "诊断结果："+record.getSolution();
             data[i][3] = "用药意见："+record.getMedicine();

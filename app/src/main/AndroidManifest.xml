@@ -40,9 +40,9 @@
         <activity
             android:name="com.sourcey.intelligentmedicalsystem.DiseaseListActivity"
             android:label="@string/title_activity_disease_list"
-            android:theme="@style/AppTheme.Dark"/>
+            android:theme="@style/AppTheme31"/>
         <activity android:name="com.sourcey.intelligentmedicalsystem.RecordActivity"
-            android:theme="@style/AppTheme3"
+            android:theme="@style/AppTheme.Dark.withActionbar"
             android:label="@string/title_coi"/>
         <activity
             android:name="com.sourcey.intelligentmedicalsystem.AIActivity"
@@ -56,6 +56,15 @@
         <activity android:name="com.sourcey.intelligentmedicalsystem.DiseaseDetailActivity"
             android:label="@string/title_record"
             android:theme="@style/AppTheme31"/>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.sourcey.intelligentmedicalsystem.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
     </application>
 
 </manifest>
