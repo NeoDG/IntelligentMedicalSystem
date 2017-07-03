@@ -60,7 +60,8 @@ public class GetThread extends Thread {
 				result=EntityUtils.toString(entity,"utf-8");
 				Log.e("r1",result);
 			}else{
-				result="发送失败";
+				HttpEntity entity=httpResponse.getEntity();
+				result=EntityUtils.toString(entity,"utf-8");
 				Log.e("r",result);
 			}
 
@@ -70,7 +71,7 @@ public class GetThread extends Thread {
 		}catch(Exception e){
 			e.printStackTrace();
 			if(listener!=null){
-				listener.onError(e);
+//				listener.onError(e);
 			}
 		}
 	}

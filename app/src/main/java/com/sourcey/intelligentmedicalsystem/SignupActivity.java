@@ -161,7 +161,10 @@ public class SignupActivity extends AppCompatActivity {
         Toast.makeText(getBaseContext(), "注册成功", Toast.LENGTH_LONG).show();
         //_signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
+        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+        startActivity(intent);
         finish();
+        overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
     }
 
     public void onSignupFailed(String message) {

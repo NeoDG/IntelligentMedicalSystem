@@ -6,11 +6,13 @@
     android:gravity="center">
 
 
-    <TextView
+    <ImageView
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/news3"
         android:textSize="@dimen/text_size"
-        android:textColor="@color/main_top_color"/>
+        android:background="@drawable/ill_img3"
+        android:textColor="@color/main_top_color"
+        android:scaleType="center"/>
 </LinearLayout>

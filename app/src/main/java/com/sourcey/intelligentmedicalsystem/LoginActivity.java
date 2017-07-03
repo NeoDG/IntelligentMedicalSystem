@@ -109,16 +109,14 @@ public class LoginActivity extends AppCompatActivity {
                     onLoginFailed();
                 }
                 Looper.loop();
-
             }
 
             @Override
             public void onError(Exception e) {
-                Looper.prepare();
+//                Looper.prepare();
                 Log.e("erro","22");
                 onLoginFailed();
-                Looper.loop();
-
+//                Looper.loop();
             }
         });
         getThread.start();
@@ -186,7 +184,7 @@ public class LoginActivity extends AppCompatActivity {
         MyApplication.setLoginFlag(true);
       //  MyApplication.setUserId(id);
        // _loginButton.setEnabled(true);
-        Toast.makeText(getBaseContext(), "登录成功", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "登录成功", Toast.LENGTH_SHORT).show();
         Intent intent=new Intent(LoginActivity.this,RecordActivity.class);
         startActivity(intent);
 
@@ -194,7 +192,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "登录失败", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "登录失败", Toast.LENGTH_SHORT).show();
 
        // _loginButton.setEnabled(true);
     }

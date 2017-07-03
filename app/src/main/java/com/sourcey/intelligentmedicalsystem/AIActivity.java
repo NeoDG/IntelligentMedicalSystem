@@ -389,6 +389,7 @@ public class AIActivity extends Activity implements View.OnClickListener {
                                         message.what = SHOW_RESPONSE_ELSE;
                                         break;
                                     case "相关药物":
+                                    case "治疗":
                                         message.what = SHOW_RESPONSE_MEDINCINE;
                                         break;
                                     default:
