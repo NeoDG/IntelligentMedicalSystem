@@ -122,6 +122,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
         Intent intent;
         switch(v.getId()){
             case R.id.btn_message:
+                intent=new Intent(MainActivity.this,NewsActivity.class);
+                startActivity(intent);
                 break;
             case R.id.btn_disease:
                 intent=new Intent(MainActivity.this,DiseaseListActivity.class);

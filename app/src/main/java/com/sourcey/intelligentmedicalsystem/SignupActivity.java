@@ -20,7 +20,7 @@ import com.sourcey.intelligentmedicalsystem.httpUtils.PostThread;
 import org.json.JSONException;
 
 import butterknife.ButterKnife;
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * 注册activity
@@ -32,11 +32,11 @@ public class SignupActivity extends AppCompatActivity {
 
     //@Bind(R.id.input_username) EditText _usernameText;
    // @Bind(R.id.input_email) EditText _emailText;
-    @Bind(R.id.input_phone) EditText _phoneText;
-    @Bind(R.id.input_password) EditText _passwordText;
-    @Bind(R.id.input_reEnterPassword) EditText _reEnterPasswordText;
-    @Bind(R.id.btn_signup) Button _signupButton;
-    @Bind(R.id.link_login) TextView _loginLink;
+    @BindView(R.id.input_phone) EditText _phoneText;
+    @BindView(R.id.input_password) EditText _passwordText;
+    @BindView(R.id.input_reEnterPassword) EditText _reEnterPasswordText;
+    @BindView(R.id.btn_signup) Button _signupButton;
+    @BindView(R.id.link_login) TextView _loginLink;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
