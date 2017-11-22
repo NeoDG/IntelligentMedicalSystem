@@ -30,7 +30,7 @@ public class PostThread extends Thread {
 		this.content=content;
 		this.listener=listener;
 		this.i=i;
-		this.url="http://118.89.178.240:5000/upload";
+		this.url="http://59.69.101.2/med/upload";
 	}
 
 	public PostThread(String username,String password,HttpCallbackListener listener,int i){
@@ -39,7 +39,7 @@ public class PostThread extends Thread {
 		//this.phonenumber=phonenumber;
 		this.listener=listener;
 		this.i=i;
-		this.url="http://118.89.178.240:5000/signup";
+		this.url="http://59.69.101.2/med/signup";
 	}
 
 	@Override

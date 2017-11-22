@@ -24,14 +24,14 @@ public class GetThread extends Thread {
 	public GetThread(String content, HttpCallbackListener listner){
 		this.content=content;
 		this.listener=listner;
-		this.url="http://118.89.178.240:5000/ask/"+content;
+		this.url="http://59.69.101.2/med/ask/"+content;
 		this.i=1;
 	}
 
 	public GetThread(String username,String password,HttpCallbackListener listner){
 		this.username=username;
 		this.password=password;
-		this.url="http://118.89.178.240:5000/login";
+		this.url="http://59.69.101.2/med/login";
 		this.listener=listner;
 		this.i=2;
 
